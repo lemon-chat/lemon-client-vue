@@ -2,12 +2,16 @@
   <router-view></router-view>
 </template>
 <script lang='ts'>
-import { useRouter } from 'vue-router'
+import { useRouter } from "vue-router";
 export default {
-  name: 'app',
+  name: "app",
   setup() {
-    const router = useRouter()
-    router.push('/')
-  }
-}
+    const router = useRouter();
+    router.push("/");
+  },
+};
 </script>
+
+<style lang="scss" scoped>
+
+</style>

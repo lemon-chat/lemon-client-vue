@@ -3,7 +3,7 @@ import App from './App.vue'
 import './index.scss'
 import ElementUI from 'element-plus';
 import 'element-plus/lib/theme-chalk/index.css';
-import './theme/index.css'
+// import './theme/index.css'
 import router from './router'
 
 // vite 使用 esm 编译 import, electron 及 node.js 内置模块用 require 形式

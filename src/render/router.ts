@@ -1,15 +1,16 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Index from './views/Index.vue'
 import Create from './views/Create.vue'
+import Login from './views/Login.vue'
 const router:any = createRouter({
   history: createWebHashHistory(),
   routes: [
     {
         path: '/',
         name: 'index',
-        component: Index as any,
+        component: Login as any,
         meta: {
-            title: '首页'
+            title: '登录'
         }
     },
     {
@@ -19,7 +20,15 @@ const router:any = createRouter({
         meta: {
             title: '创建'
         }
-    }
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login as any,
+      meta: {
+          title: '登录'
+      }
+  }
   ]
 })
 
