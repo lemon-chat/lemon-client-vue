@@ -52,22 +52,19 @@
 </template>
 
 <script lang="ts">
+import { Options, Vue } from 'vue-class-component'
 import { ref, defineComponent } from 'vue'
-export default defineComponent({
-  name: 'HelloWorld',
+@Options({
   props: {
-    msg: {
-      type: String,
-      required: true
-    }
-  },
-  setup: () => {
-    const count = ref(0)
-    const useScriptSetup = ref(false);
-    const useTsPlugin = ref(false);
-    return { count, useScriptSetup, useTsPlugin }
+    msg: String
   }
 })
+export default class HelloWorld extends Vue {
+  msg!: string
+  count: number = 0
+  useScriptSetup: boolean = false
+  useTsPlugin: boolean = false
+}
 </script>
 
 <style scoped>

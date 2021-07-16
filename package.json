@@ -1,8 +1,8 @@
 {
-  "name": "electron-vue",
+  "name": "lemon-chat",
   "version": "0.0.1",
   "main": "dist/main/index.js",
-  "author": "草鞋没号 <308487730@qq.com>",
+  "author": "JunWang <1103870790@qq.com>",
   "license": "MIT",
   "scripts": {
     "dev": "npm run dev:all",
@@ -14,7 +14,7 @@
     "build": "rimraf dist && npm run build:vue && npm run build:ele && electron-builder"
   },
   "build": {
-    "appId": "308487730@qq.com",
+    "appId": "1103870790@qq.com",
     "asar": false,
     "directories": {
       "output": "release/${version}"
@@ -52,7 +52,8 @@
     }
   },
   "dependencies": {
-    "vue": "^3.1.2"
+    "vue": "^3.1.4",
+    "vue-class-component": "^8.0.0-rc.1"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.2",
