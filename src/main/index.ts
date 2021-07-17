@@ -15,6 +15,7 @@ function createWin() {
   win = new BrowserWindow({
     width: 1024,
     height: 768,
+    titleBarStyle: "hidden", // add this line for custom title bar
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
