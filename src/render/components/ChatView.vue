@@ -1,17 +1,20 @@
 <template>
   <div className="scrollable-container special-cursor">
     <div v-for="item in chatData" :key="item.id" class="message-line">
-      <ChatMessage :type="item.type" :avatar="item.avatar" :text="item.text" :side="item.side"></ChatMessage>
+      <chat-message-text v-if="item.type=='text'" :avatar="item.avatar" :side="item.side" :message="item.message"/>
+      <chat-message-time v-if="item.type=='time'" :time="item.time"/>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import ChatMessage from "./ChatMessage.vue";
 import { Options, Vue } from "vue-class-component";
+import ChatMessageText from "./ChatMessageText.vue";
+import ChatMessageTime from "./ChatMessageTime.vue";
 @Options({
   components: {
-    ChatMessage,
+    ChatMessageText,
+    ChatMessageTime,
   },
 })
 export default class ChatView extends Vue {
@@ -19,27 +22,47 @@ export default class ChatView extends Vue {
     {
       id: "8d6f0265-38c3-4a86-943d-d55c16b2a41f",
       type: "time",
-      text: "11:30",
+      time: "11:30",
     },
     {
       id: "58c7cb11-ada7-4cae-99e0-b9b9490715a1",
       type: "text",
       avatar: "https://i.loli.net/2021/04/01/S5MYlL2bQjc1Zha.jpg",
-      text: "你好，我是夏幻",
+      message: [
+        {
+          type: "image",
+          url: "https://i.loli.net/2021/07/18/GKBaSsEcV8munYq.jpg",
+          size: 64
+        },
+        {
+          type: "text",
+          text: "你好，我是夏幻",
+        }
+      ],
       side: "left",
     },
     {
       id: "e53b148a-7dd9-46fc-a9b1-bb680a17dd85",
       type: "text",
       avatar: "https://i.loli.net/2021/04/02/U19eNu5hFkB63Y7.jpg",
-      text: "你好，我是斯基",
+      message: [
+        {
+          type: "text",
+          text: "你好，我是斯基",
+        }
+      ],
       side: "right",
     },
     {
       id: "f460f6bd-f65f-4d18-93f1-c74e6c7a910c",
       type: "text",
       avatar: "https://i.loli.net/2021/04/01/S5MYlL2bQjc1Zha.jpg",
-      text: "真巧啊",
+      message: [
+        {
+          type: "text",
+          text: "真巧啊",
+        }
+      ],
       side: "left",
     }
   ];
@@ -52,7 +75,7 @@ export default class ChatView extends Vue {
 }
 
 .message-line {
-  height: 42px;
+  height: auto;
 }
 
 .scrollable-container {

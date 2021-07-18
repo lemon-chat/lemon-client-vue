@@ -1,10 +1,12 @@
 <template>
   <chat-message-text v-if="type=='text'" :size="height" :avatar="avatar" :text="text" :side="side"/>
+  <chat-message-time v-if="type=='time'" :time="text"/>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import ChatMessageText from "./ChatMessageText.vue";
+import ChatMessageTime from "./ChatMessageTime.vue";
 @Options({
   props: {
     height: {
@@ -30,6 +32,7 @@ import ChatMessageText from "./ChatMessageText.vue";
   },
   components: {
     ChatMessageText,
+    ChatMessageTime,
   },
 })
 export default class ChatMessage extends Vue {
@@ -39,7 +42,6 @@ export default class ChatMessage extends Vue {
   text?: string;
   side?: string;
   mounted() {
-      console.log(this.type)
   }
 }
 </script>

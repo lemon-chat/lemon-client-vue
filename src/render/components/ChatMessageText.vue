@@ -1,7 +1,7 @@
 <template>
-  <div v-if="side == 'left'">
-    <div className="message-item">
-      <div className="left-message-avatar">
+  <div>
+    <div class="message-item">
+      <div :class="{'left-message-avatar': isLeft, 'right-message-avatar': !isLeft}">
         <img
           class="chat-message-avatar"
           :style="{ height: size + 'px' }"
@@ -9,30 +9,16 @@
           alt="Load failure"
         />
       </div>
-      <div className="left-message-bubble text-selectable">
-        <div className="left-tri">
+      <div class="text-selectable" :class="{'left-message-bubble': isLeft, 'right-message-bubble': !isLeft}">
+        <div :class="{'left-tri': isLeft, 'right-tri': !isLeft}">
           <span></span>
         </div>
-        <div className="left-message-text">{{ text }}</div>
-      </div>
-    </div>
-  </div>
-
-  <div v-if="side == 'right'">
-    <div className="message-item">
-      <div className="right-message-avatar">
-        <img
-          class="chat-message-avatar"
-          :style="{ height: size + 'px' }"
-          :src="avatar"
-          alt="Load failure"
-        />
-      </div>
-      <div className="right-message-bubble text-selectable">
-        <div className="right-tri">
-          <span></span>
+        <div :class="{'left-message-text': isLeft, 'right-message-text': !isLeft}">
+          <div v-for="item in message" :key="item.id">
+            <div v-if="item.type == 'text'">{{ item.text }}</div>
+            <div v-if="item.type == 'image'"><img :style="{height: item.size + 'px'}" :src="item.url" alt="Load failure" /></div>
+          </div>
         </div>
-        <div className="right-message-text">{{text}}</div>
       </div>
     </div>
   </div>
@@ -54,7 +40,7 @@ import { Options, Vue } from "vue-class-component";
       type: String,
       default: "https://i.loli.net/2021/04/01/S5MYlL2bQjc1Zha.jpg",
     },
-    text: {
+    message: {
       type: String,
       default: "message",
     },
@@ -68,17 +54,23 @@ export default class ChatMessageText extends Vue {
   height?: number;
   type?: string;
   avatar?: string;
-  text?: string;
+  message?: string;
   side?: string;
-  mounted() {
+  mounted() {}
+  get isLeft(): boolean{
+    return this.side == 'left'
   }
 }
 </script>
 
 <style lang="less" scoped>
+.chat-message-avatar {
+  border: solid 1px rgb(220, 220, 220);
+  border-radius: 5px;
+}
 .message-item {
   position: relative;
-  display: block;
+  display: inline-block;
   width: 100%;
 }
 
@@ -115,7 +107,6 @@ export default class ChatMessageText extends Vue {
   top: 0px;
   margin: 5px 5px 5px 0px;
   padding: 6px;
-  width: 100%;
 
   color: #24292e;
   background-color: rgb(255, 255, 255);
@@ -181,14 +172,14 @@ export default class ChatMessageText extends Vue {
   display: inline-block;
   left: 0px;
   top: 0px;
-  margin: 5px 5px 5px 0px;
+  margin: 5px 0px 5px 5px;
   padding: 6px;
-  width: 100%;
 
   color: #24292e;
   background-color: rgb(158, 234, 106);
   border: 1px solid #e1e4e8;
   border-radius: 6px;
+  cursor: text;
 }
 
 .right-tri {
