@@ -16,7 +16,7 @@
         <div :class="{'left-message-text': isLeft, 'right-message-text': !isLeft}">
           <div v-for="item in message" :key="item.id">
             <div v-if="item.type == 'text'">{{ item.text }}</div>
-            <div v-if="item.type == 'image'"><img :style="{height: item.size + 'px'}" :src="item.url" alt="Load failure" /></div>
+            <div v-if="item.type == 'image'"><img :style="{borderRadius: '5px', height: item.size + 'px'}" :src="item.url" alt="Load failure" /></div>
           </div>
         </div>
       </div>
